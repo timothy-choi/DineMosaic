@@ -16,4 +16,15 @@ class UserAuth(db.Model):
     google_id = db.Column(db.String(100), unique=True, nullable=True)
     auth_provider = db.Column(db.String(20), default="local")
 
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'user_id': str(self.user_id),
+            'username': self.username,
+            'password': self.password,
+            'email': self.email,
+            'google_id': self.google_id,
+            'auth_provider': self.auth_provider
+        }
+
 

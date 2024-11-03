@@ -14,3 +14,12 @@ class Users(db.Model):
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     userAuth_id = db.Column(PG_UUID(as_uuid=True), ForeignKey('user_auth.id'), nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'name': self.name,
+            'username': self.username,
+            'email': self.email,
+            'userAuth_id': str(self.userAuth_id)
+        }
